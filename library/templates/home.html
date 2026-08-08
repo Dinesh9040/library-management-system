@@ -1,0 +1,138 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library management</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+</head>
+<body>
+
+    <div class="header">
+        <h1>LIBRARY MANAGEMENT SYSTEM</h1>
+    </div>
+    <div class="container">
+        <div class="welcome">
+
+          <h2>Welcome {{request.user.username}}</h2>
+          <p>Manage your library easily</p>
+        </div>
+
+        <div class="cards">
+            <div class="card">
+                <i class="fas fa-book"></i>
+                <br><br>
+
+                <a href="/add_book">Add Book</a><br><br>
+            </div>
+
+            <div class="card">
+                <i class="fas fa-user-graduate"></i>
+                <br><br>
+                <a href="/add_student">Add studentdetails</a><br><br>
+            </div>
+            <div class="card">
+                <i class="fas fa-book-open"></i>
+                <br><br>
+                <a href="/issue"> Issue Book</a>
+            </div>
+        </div>
+        <div class="logout">
+
+            <a href="/logout"><i class="fas fa-sign-out-alt"></i>Logout</a>
+
+        </div>
+
+    
+    
+
+
+
+     <table border="2px",padding=2px,margin="10px">
+        <tr>
+            <th>title</th>
+            <th>Athuor</th>
+            <th>isbn</th>
+            <th>quantity</th>
+        </tr>
+        {% for i in books %}
+        <tr>
+            <td>{{i.title}}</td>
+            <td>{{i.author}}</td>
+            <td>{{i.isbn}}</td>
+            <td>{{i.quantity}}</td>
+        </tr>
+        {% endfor %}
+
+     </table><br><br>
+
+
+
+     <table border="2px">
+        <tr>
+            <th>name</th>
+            <th>roll</th>
+            <th>department</th>
+            <th>phone</th>
+        </tr>
+        {% for j in students %}
+        <tr>
+            <td>{{j.name}}</td>
+            <td>{{j.roll}}</td>
+            <td>{{j.department}}</td>
+            <td>{{j.phone}}</td>
+        </tr>
+        {% endfor  %}
+
+     </table>
+     <br><br><br>
+
+
+     <h1>issue book</h1>
+    <table border="1">
+        <tr>
+            <th>Student Name</th>
+            <th>Book Name</th>
+            <th>issue Date</th>
+            <th>return Date</th>
+            <th>Action</th>
+        </tr>
+        {% for issue in issued_books %}
+        <tr>
+            <td>{{issue.student.name}}</td>
+            <td>{{issue.book.title}}</td>
+            <td>{{issue.issue_date}}</td>
+            <td>{{issue.return_date}}</td>
+            <td>
+                {% if issue.return_date %}
+                 Returned
+                
+                {% else %}
+                 <a href="{% url 'return_book' issue.id %}">
+                    Return Book
+                 </a>
+                {% endif %}
+
+
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+
+    </div>
+
+    
+
+    
+
+
+
+
+
+    
+</body>
+</html>

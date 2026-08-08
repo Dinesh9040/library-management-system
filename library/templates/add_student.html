@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add students</title>
+</head>
+<body>
+    <h2>studentdetails</h2>
+    <form method="POST">
+        {%csrf_token%}
+
+        <input type="text" name="name" placeholder="Enter a student name here"><br><br>
+        <input type="number" name="roll" placeholder="Enter a student roll here"><br><br>
+        <input type="text" name="department" placeholder="Enter a student department here"><br><br>
+        <input type="number" name="phone" placeholder="Enter a student mobile number here"><br><br>
+
+        <button type="submit">save</button>
+                
+
+        
+
+        
+    
+
+
+    </form>
+    
+</body>
+</html>
